@@ -51,13 +51,29 @@ combined_data = combined_data.drop_duplicates(subset=['Restaurant'], keep='first
 combined_data['Combined Rating'] = (combined_data['Rating_x'] + combined_data['Rating_y']) / 2
 combined_data['Total Reviews'] = combined_data['Number of Reviews_x'] + combined_data['Number of Reviews_y']
 
+# Function to determine price range based on review content
+def infer_price_range(review):
+    review = review.lower()
+    if any(word in review for word in ['cheap', 'affordable', 'budget', 'inexpensive', 'low', 'low-priced']):
+        return '$'
+    elif any(word in review for word in ['moderate', 'reasonable', 'decent']):
+        return '$$'
+    elif any(word in review for word in ['expensive', 'luxury', 'high-end', 'pricey']):
+        return '$$$'
+    else:
+        return 'Unknown'  # For reviews that do not match any category
+
+# Apply the price range function to both review columns
+combined_data['price_range_x'] = combined_data['Review_x'].apply(infer_price_range)
+combined_data['price_range_y'] = combined_data['Review_y'].apply(infer_price_range)
+
+# Assign the price range based on the reviews
+combined_data['price_range'] = combined_data[['price_range_x', 'price_range_y']].mode(axis=1)[0]  # Most common price range
+
 # Filter based on location
 place_df = combined_data[combined_data['Location'].str.lower().str.contains(place.lower())]
 
 # Filter based on price range
-if 'price_range' not in combined_data.columns:
-    combined_data['price_range'] = combined_data['Review_x'].apply(lambda review: '$$' if 'moderate' in review.lower() else '$')  # Placeholder logic
-
 place_df = place_df[place_df['price_range'] == price]
 
 # Sort by total reviews and rating
@@ -84,4 +100,3 @@ st.dataframe(popular_restaurants.style.format({
 # Message if no results found
 if popular_restaurants.empty:
     st.write(f"No restaurants found for {place} with price range {price}.")
-
