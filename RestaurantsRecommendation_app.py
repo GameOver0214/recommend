@@ -54,11 +54,32 @@ combined_data['Total Reviews'] = combined_data['Number of Reviews_x'] + combined
 # Function to determine price range based on review content
 def infer_price_range(review):
     review = review.lower()
-    if any(word in review for word in ['cheap', 'affordable', 'budget', 'inexpensive']):
+    if any(word in review for word in [
+        'cheap', 'affordable', 'budget', 'inexpensive', 'bargain',
+        'low-priced', 'discount', 'sale', 'economical', 'reasonable price',
+        'great value', 'good deal', 'worth the price', 'discounted',
+        'cost-effective', 'pocket-friendly', 'bank-friendly', 'cost-efficient',
+        'thrifty', 'frugal', 'value meal', 'combo deal', 'budget menu', 'special offer'
+    ]):
         return '$'
-    elif any(word in review for word in ['moderate', 'reasonable', 'decent']):
+    elif any(word in review for word in [
+        'moderate', 'reasonable', 'decent', 'fair price', 'worth it',
+        'average price', 'acceptable price', 'fairly priced', 'just right',
+        'good quality for the price', 'satisfactory', 'not bad', 'adequate',
+        'neither cheap nor expensive', 'affordable luxury', 'value for money',
+        'good enough', 'sensible pricing', 'competitively priced', 'comparable',
+        'similar to others', 'standard', 'normal price', 'middle of the road'
+    ]):
         return '$$'
-    elif any(word in review for word in ['expensive', 'luxury', 'high-end', 'pricey']):
+    elif any(word in review for word in [
+        'expensive', 'luxury', 'high-end', 'pricey', 'overpriced',
+        'not worth the price', 'top-notch', 'premium', 'elite', 'exclusive',
+        'high-quality', 'five-star', 'fine dining', 'gourmet', 'first-class',
+        'extravagant', 'lavish', 'extravagant prices', 'steep price',
+        'high cost', 'costly', 'heavy on the wallet', 'beyond budget',
+        'too much', 'more than expected', 'not affordable', 'highly priced',
+        'worth the splurge'
+    ]):
         return '$$$'
     else:
         return 'Unknown'  # For reviews that do not match any category
