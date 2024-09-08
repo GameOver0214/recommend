@@ -159,7 +159,7 @@ sorted_data = place_df.sort_values(by=['Total Reviews', 'Combined Rating'], asce
 
 # Reset index and prepare final dataframe for display
 sorted_data.reset_index(drop=True, inplace=True)
-popular_restaurants = sorted_data[['Restaurant', 'Location', 'Total Reviews', 'Combined Rating', 'price_range']].head(10)
+popular_restaurants = sorted_data[['Restaurant', 'Location', 'Total Reviews', 'Combined Rating']].head(10)
 
 # Rename columns for display
 popular_restaurants = popular_restaurants.rename(columns={
@@ -178,3 +178,46 @@ st.dataframe(popular_restaurants.style.format({
 # Message if no results found
 if popular_restaurants.empty:
     st.write(f"No restaurants found for {place} with price range {price}.")
+
+
+# Filter based on location
+place_df = combined_data[combined_data['Location'].str.lower().str.contains(place.lower())]
+
+# Filter based on price range
+place_df = place_df[place_df['price_range'] == price]
+
+# Sort by total reviews and rating
+sorted_data = place_df.sort_values(by=['Total Reviews', 'Combined Rating'], ascending=[False, False])
+
+# Reset index and prepare final dataframe for display
+sorted_data.reset_index(drop=True, inplace=True)
+popular_restaurants = sorted_data[['Restaurant', 'Location', 'Total Reviews', 'Combined Rating', 'price_range']].head(10)
+
+# Rename columns for display
+popular_restaurants = popular_restaurants.rename(columns={
+    'Restaurant': 'Name',
+    'Total Reviews': 'Number of Reviews',
+    'Combined Rating': 'Average Rating',
+    'price_range': 'Price Range'
+})
+
+# Display the dataframe in Streamlit
+st.dataframe(popular_restaurants.style.format({
+    'Number of Reviews': '{:.0f}',
+    'Average Rating': '{:.1f}'
+}))
+
+# Create a separate table for price range with restaurant and location
+price_range_table = sorted_data[['Restaurant', 'Location', 'price_range']].drop_duplicates()
+price_range_table = price_range_table.rename(columns={
+    'price_range': 'Price Range'
+})
+
+# Display the price range table
+st.markdown("### Price Range of Restaurants")
+st.dataframe(price_range_table)
+
+# Message if no results found
+if popular_restaurants.empty:
+    st.write(f"No restaurants found for {place} with price range {price}.")
+
