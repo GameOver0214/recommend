@@ -74,3 +74,6 @@ st.dataframe(popular_restaurants.style.format({
     'Number of Reviews': '{:.0f}',
     'Average Rating': '{:.1f}'
 }))
+
+price = st.selectbox("Select the Price Range($, $$, $$$):", 
+                     ['$', '$$', '$$$'])
