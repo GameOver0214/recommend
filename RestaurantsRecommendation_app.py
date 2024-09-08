@@ -54,7 +54,7 @@ combined_data['Total Reviews'] = combined_data['Number of Reviews_x'] + combined
 # Function to determine price range based on review content
 def infer_price_range(review):
     review = review.lower()
-    if any(word in review for word in ['cheap', 'affordable', 'budget', 'inexpensive', 'low', 'low-priced']):
+    if any(word in review for word in ['cheap', 'affordable', 'budget', 'inexpensive']):
         return '$'
     elif any(word in review for word in ['moderate', 'reasonable', 'decent']):
         return '$$'
