@@ -55,34 +55,91 @@ combined_data['Total Reviews'] = combined_data['Number of Reviews_x'] + combined
 def infer_price_range(review):
     review = review.lower()
     if any(word in review for word in [
-        'cheap', 'affordable', 'budget', 'inexpensive', 'bargain',
-        'low-priced', 'discount', 'sale', 'economical', 'reasonable price',
-        'great value', 'good deal', 'worth the price', 'discounted',
-        'cost-effective', 'pocket-friendly', 'bank-friendly', 'cost-efficient',
-        'thrifty', 'frugal', 'value meal', 'combo deal', 'budget menu', 'special offer'
+        'cheap', 'affordable', 'budget', 'inexpensive', 'bargain', 'low-cost',
+        'economical', 'good deal', 'low-priced', 'discount', 'sale', 
+        'value for money', 'pocket-friendly', 'wallet-friendly', 'frugal', 
+        'cost-effective', 'reasonable price', 'budget-friendly', 'inexpensive options',
+        'family-friendly prices', 'daily specials', 'budget menu', 'cheap eats',
+        'special offer', 'value meal', 'economical choices', 'cheap dining',
+        'discount menu', 'affordable options', 'cost-efficient', 'low-end',
+        'wallet-friendly choices', 'inexpensive dining', 'great prices', 
+        'cheap lunch', 'value snacks', 'wallet-conscious', 'budget dining', 
+        'low-cost meal', 'economical meal', 'special pricing', 'affordable eats', 
+        'best budget', 'price-friendly', 'unbeatable prices', 'economical eats', 
+        'thrifty meal', 'low-budget options', 'budget-friendly eats', 
+        'low-price specials', 'student-friendly', 'cheap rates', 'low-cost dining', 
+        'great value for money', 'thrifty choices', 'cut-rate', 'wallet-friendly meal', 
+        'budget-conscious', 'discounted rates', 'economy-priced', 'discount dining', 
+        'affordable rates', 'penny-pinching', 'cost-effective options', 'cheap specials',
+        'affordable dining', 'budget options', 'cost-saving', 'low-end meals', 
+        'wallet-wise', 'savings deal', 'budget combo', 'pocket-friendly meals', 
+        'value-driven', 'cheap treats', 'frugal dining', 'good prices', 
+        'economical dining', 'thrifty eats', 'sensible pricing', 'budget bargain', 
+        'value for less', 'low-cost deals', 'student specials', 'bargain prices', 
+        'discount treats', 'frugal choices', 'budget-friendly prices', 
+        'low-cost options', 'smart spending', 'economical finds', 'deal meals', 
+        'low-cost specials', 'affordable bites', 'economical bargains', 
+        'price-slashing', 'cost-effective meals', 'great cheap eats', 
+        'budget-worthy', 'penny-wise'
     ]):
-        return '$'
+        return '$'  # Cheap
     elif any(word in review for word in [
-        'moderate', 'reasonable', 'decent', 'fair price', 'worth it',
-        'average price', 'acceptable price', 'fairly priced', 'just right',
-        'good quality for the price', 'satisfactory', 'not bad', 'adequate',
-        'neither cheap nor expensive', 'affordable luxury', 'value for money',
-        'good enough', 'sensible pricing', 'competitively priced', 'comparable',
-        'similar to others', 'standard', 'normal price', 'middle of the road'
+        'moderate', 'reasonable', 'decent', 'fair price', 'worth it', 
+        'good value', 'fairly priced', 'average price', 'just right', 
+        'sensible pricing', 'acceptable price', 'average quality', 'solid choice', 
+        'good enough', 'reasonable quality', 'typical pricing', 'nice atmosphere', 
+        'affordable luxury', 'moderate options', 'quality food', 'value experience', 
+        'good balance', 'moderate pricing', 'decent value', 'reasonably priced meals', 
+        'quality at a price', 'value-for-quality', 'satisfactory', 'adequate pricing', 
+        'fair value', 'decent portions', 'worthwhile', 'worth the price', 
+        'solid meal', 'acceptable quality', 'average experience', 'mid-range', 
+        'reasonably priced eats', 'fair pricing', 'reasonable expectations', 
+        'not too pricey', 'above average', 'everyday pricing', 'moderate quality', 
+        'well-priced', 'solid offering', 'sensible value', 'reasonable meal', 
+        'decent options', 'quality without splurge', 'fair deal', 'good atmosphere', 
+        'okay prices', 'quality service', 'reasonable choices', 'middle of the road', 
+        'fair portions', 'pleasant dining', 'worthwhile meal', 'good quality for the price', 
+        'reasonable rates', 'standard pricing', 'sufficient value', 'sensible meal prices', 
+        'decent quality food', 'moderate expectations', 'not over the top', 
+        'balanced experience', 'fair offerings', 'sensible dining', 'cost-justified', 
+        'typical costs', 'reliable value', 'satisfactory pricing', 'value-oriented', 
+        'reasonable meal prices', 'average dining', 'accessible prices', 
+        'moderate flavors', 'pleasant experience', 'decent environment', 
+        'fair pricing options', 'balanced offerings', 'practical prices', 
+        'acceptable dining', 'fair comparisons', 'reasonable options', 'not too high', 
+        'satisfactory quality', 'good value choices', 'solid standards', 
+        'sensible prices', 'moderate service', 'everyday quality', 'standard offerings', 
+        'acceptable pricing', 'reasonable enjoyment', 'decent flavors', 
+        'practical pricing'
     ]):
-        return '$$'
+        return '$$'  # Moderate
     elif any(word in review for word in [
-        'expensive', 'luxury', 'high-end', 'pricey', 'overpriced',
-        'not worth the price', 'top-notch', 'premium', 'elite', 'exclusive',
-        'high-quality', 'five-star', 'fine dining', 'gourmet', 'first-class',
-        'extravagant', 'lavish', 'extravagant prices', 'steep price',
-        'high cost', 'costly', 'heavy on the wallet', 'beyond budget',
-        'too much', 'more than expected', 'not affordable', 'highly priced',
-        'worth the splurge'
+        'expensive', 'luxury', 'high-end', 'pricey', 'overpriced', 
+        'extravagant', 'premium', 'elite', 'exclusive', 'lavish', 
+        'costly', 'gourmet', 'fine dining', 'first-class', 'five-star', 
+        'exquisite', 'top-notch', 'high-quality', 'worth the splurge', 
+        'upscale', 'exceptional quality', 'luxurious', 'indulgent', 
+        'deluxe', 'prestigious', 'extravagant experience', 'high-cost', 
+        'premium pricing', 'cost prohibitive', 'high-class', 'luxury dining', 
+        'splurge-worthy', 'extravagant prices', 'fancy', 'lavish dining', 
+        'ritzy', 'opulent', 'cost prohibitive', 'exclusive experience', 
+        'premium menu', 'high-tier', 'gourmet experience', 'fine cuisine', 
+        'upscale offerings', 'luxury experience', 'high-end service', 
+        'lavishly priced', 'top-tier dining', 'costly choices', 
+        'elite offerings', 'extravagant meals', 'posh', 'extravagant options', 
+        'exquisite dining', 'five-star quality', 'elite atmosphere', 
+        'luxurious flavors', 'steep prices', 'high-end options', 
+        'premium experience', 'overpriced items', 'first-rate', 
+        'extraordinary', 'classy', 'high-status', 'high-priced meals', 
+        'lavish quality', 'extravagant flavors', 'luxurious presentation', 
+        'exceptional service', 'high-ticket', 'premium value', 
+        'superior quality', 'upscale choices', 'deluxe experience', 
+        'five-star service', 'luxury menu', 'refined', 'elite dining', 
+        'exclusive prices'
     ]):
-        return '$$$'
+        return '$$$'  # Expensive
     else:
-        return 'Unknown'  # For reviews that do not match any category
+        return 'Unknown'  # Default to moderate if no keywords found
 
 # Apply the price range function to both review columns
 combined_data['price_range_x'] = combined_data['Review_x'].apply(infer_price_range)
