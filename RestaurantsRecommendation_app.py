@@ -1,9 +1,26 @@
 import streamlit as st
 import pandas as pd
 
-# Set the background image using CSS
 import streamlit as st
-image_url = "https://cdn.vox-cdn.com/uploads/chorus_image/image/73039055/Valle_KimberlyMotos__1_of_47__websize__1_.0.jpg"
+
+# Custom CSS to add background image
+background_image_url = "https://cdn.vox-cdn.com/uploads/chorus_image/image/73039055/Valle_KimberlyMotos__1_of_47__websize__1_.0.jpg"
+
+page_bg = f"""
+<style>
+body {{
+    background-image: url("{background_image_url}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}}
+</style>
+"""
+
+# Injecting the CSS
+st.markdown(page_bg, unsafe_allow_html=True)
+
 # Sample data (you can replace this with your actual data)
 restaurants = [
     {"name": "The Gourmet Kitchen", "url": "https://gourmetkitchen.com"},
@@ -26,6 +43,7 @@ for restaurant in restaurants:
 
 # Footer
 st.write("Powered by Streamlit")
+
 
 
 place = st.selectbox("Select the state location:", 
