@@ -1,8 +1,8 @@
+pip install scikit-learn
 import streamlit as st
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-pip install scikit-learn
 # Load the CSV file
 df = pd.read_csv('GoogleReview_data_cleaned.csv')
 
