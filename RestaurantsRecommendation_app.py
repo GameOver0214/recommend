@@ -5,13 +5,10 @@ import streamlit as st
 
 import streamlit as st
 
-# Custom CSS to add background image
-background_image_url = "https://cdn.vox-cdn.com/uploads/chorus_image/image/73039055/Valle_KimberlyMotos__1_of_47__websize__1_.0.jpg"
-
 page_bg = f"""
 <style>
 body {{
-    background-image: url("{background_image_url}");
+    background-image: url("{https://cdn.vox-cdn.com/uploads/chorus_image/image/73039055/Valle_KimberlyMotos__1_of_47__websize__1_.0.jpg}");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
