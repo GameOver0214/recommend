@@ -2,20 +2,31 @@ import streamlit as st
 import pandas as pd
 
 # Set the background image using CSS
-image_url = "https://cdn.vox-cdn.com/uploads/chorus_image/image/73039055/Valle_KimberlyMotos__1_of_47__websize__1_.0.jpg"
-st.markdown(
-    f"""
-    <style>
-    .stApp {{
-        background-image: url("{image_url}");
-        background-size: cover;
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+import streamlit as st
 
-st.markdown('<h1 style="font-size:35px;">Most Popular Restaurants Based on Reviews and Ratings</h1>', unsafe_allow_html=True)
+# Sample data (you can replace this with your actual data)
+restaurants = [
+    {"name": "The Gourmet Kitchen", "url": "https://gourmetkitchen.com"},
+    {"name": "Sushi World", "url": "https://sushiworld.com"},
+    {"name": "Pasta Paradise", "url": "https://pastaparadise.com"},
+    {"name": "BBQ Haven", "url": "https://bbqhaven.com"},
+]
+
+# Title of the app
+st.title("Restaurant Explorer")
+
+# Subtitle
+st.subheader("Discover the Best Restaurants Around You")
+
+# Loop through the restaurants and display them
+for restaurant in restaurants:
+    st.write(f"**{restaurant['name']}**")
+    st.write(f"[Visit Website]({restaurant['url']})")
+    st.write("---")  # Adds a line break
+
+# Footer
+st.write("Powered by Streamlit")
+
 
 place = st.selectbox("Select the state location:", 
                      ['KL', 'Ipoh', 'JB', 'Kuching', 'Langkawi', 'Melaka', 'Miri', 'Penang', 'Petaling Jaya', 'Shah Alam'])
