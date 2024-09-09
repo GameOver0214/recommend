@@ -18,9 +18,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Injecting the CSS
-st.markdown(page_bg, unsafe_allow_html=True)
-
+st.markdown('<h1 style="font-size:35px;">Most Popular Restaurants Based on Reviews and Ratings</h1>', unsafe_allow_html=True)
 # Sample data (you can replace this with your actual data)
 restaurants = [
     {"name": "The Gourmet Kitchen", "url": "https://gourmetkitchen.com"},
